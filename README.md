@@ -116,7 +116,7 @@ Wire frame can be accessed at the link below.
 |July 13| Project Approval | Incomplete
 |July 13| Core Application Structure (HTML, CSS, etc.) | Incomplete
 |July 14| Pseudocode / Javascript functionality | Incomplete
-|July 15| Fine tune interface and functionality | Incomplete
+|July 15| Button templates/SlideShows/JS Timing	 | Incomplete
 |July 16| MVP | Incomplete
 |July 17| Presentations | Incomplete
 
