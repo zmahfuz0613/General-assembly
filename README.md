@@ -113,7 +113,7 @@ Wire frame can be accessed at the link below.
 |  Day | Deliverable | Status
 |---|---| ---|
 |July 10-12| Prompt / Wireframes / Priority Matrix / Timeframes | Complete
-|July 13| Project Approval | Incomplete
+|July 13| Project Approval | Complete
 |July 13| Core Application Structure (HTML, CSS, etc.) | Incomplete
 |July 14| Pseudocode / Javascript functionality | Incomplete
 |July 15| Button templates/SlideShows/JS Timing	 | Incomplete
@@ -132,7 +132,7 @@ Wire frame can be accessed at the link below.
 | CSS| H | 5hrs| 0hrs | 0hrs |
 | Working with API | H | 4hrs| 0hrs | 0hrs |
 | Javascript(backend) | H | 6hrs| 0hrs | 0hrs |
-| CSS(Bootstrap) | M | 5hrs| 0hrs | 0hrs |
+| CSS(Flex , Grid) | M | 5hrs| 0hrs | 0hrs |
 | CSS/JS - transition effects | L | 6hrs| 0hrs | 0hrs |
 | Button templates/SlideShows/JS Timing | L | 5hrs| 0hrs | 0hrs |
 | Total | H | 37hrs| 0hrs | 0hrs |
