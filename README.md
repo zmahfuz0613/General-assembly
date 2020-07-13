@@ -128,13 +128,13 @@ Wire frame can be accessed at the link below.
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| HTML Structure | H | 2hrs| 0hrs | 0hrs |
+| HTML Structure | H | 3hrs| 0hrs | 0hrs |
 | CSS| H | 5hrs| 0hrs | 0hrs |
 | Working with API | H | 4hrs| 0hrs | 0hrs |
-| Javascript(backend) | H | 4hrs| 0hrs | 0hrs |
-| CSS(Bootstrap) | M | 4hrs| 0hrs | 0hrs |
+| Javascript(backend) | H | 6hrs| 0hrs | 0hrs |
+| CSS(Bootstrap) | M | 5hrs| 0hrs | 0hrs |
 | CSS/JS - transition effects | L | 3hrs| 0hrs | 0hrs |
-| Local Storage for scores | L | 4hrs| 0hrs | 0hrs |
+| Button templates/SlideShows/JS Timing | L | 4hrs| 0hrs | 0hrs |
 | Total | H | 30hrs| 0hrs | 0hrs |
 
 ## Code Snippet
