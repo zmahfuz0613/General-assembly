@@ -97,7 +97,7 @@ Below is an example of a JSON request:
 ## Wireframes
 
 Wire frame can be accessed at the link below.
-[WireFrame] https://plotly.com/~str053mgr/1/
+[WireFrame] https://wireframe.cc/pro/pp/2ce612263358643
 
 ### MVP/PostMVP
 
