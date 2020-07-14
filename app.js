@@ -1,31 +1,8 @@
-const API_KEY = '52db4bf55d0c3e274cddec874e8cce74'
-
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
-
-const url = 'https://api.themoviedb.org/3/search/movie?api_key=52db4bf55d0c3e274cddec874e8cce74'
-
 
 const buttonElement = document.querySelector('#search')
 const inputElement = document.querySelector('#inputValue')
 const movieSearchable = document.querySelector('#movies-searchable')
 
-
-function generateUrl(path) {
-  const url = `https://api.themoviedb.org/3${path}?api_key=52db4bf55d0c3e274cddec874e8cce74`
-  return url
-}
-
-// Create more section of the movies e.g TV SHOWS, LATEST MOVIES, UPCOMING MOVIES, etc.
-
-
-function sectionMovies(url, onComplete, onError) {
-  fetch(url)
-    .then((res) => res.json())
-    .then(onComplete)
-    .catch((onError) => {
-    })
-
-}
 
 function movieSection(movies) {
   return movies.map((movie) => {
@@ -61,19 +38,6 @@ return movieElement
 
 }
 
-// Search movies
-// Instead of seraching just one movie we can write this function to search movies from all the sectiopns we created above using sectionMovies function.
-
-function searchMovie(value) {
-
-  const path = '/search/movie'
-
-  const url = generateUrl(path) + '&query=' + value
-
-  sectionMovies('url', 'renderSearchMovies', 'handleError')
-
-}
-
 
 // incase there is an error we creating the error function
 
@@ -84,16 +48,18 @@ function handleError(error) {
 buttonElement.onclick = function (e) {
   e.preventDefault()
   const value = inputElement.value
+  
+  searchMovie(value)
 
-  const path = '/search/movie'
+  // const path = '/search/movie'
 
-  const newUrl = generateUrl(path) + '&query=' + value
+  // const newUrl = generateUrl(path) + '&query=' + value
 
-  fetch(newUrl)
-  .then((resource) => resource.json())
-  .then(renderSearchMovies)
-  .catch((error) => {
-    })
+  // fetch(newUrl)
+  // .then((resource) => resource.json())
+  // .then(renderSearchMovies)
+  // .catch((error) => {
+  //   })
   
   inputElement.value = ''
   console.log('Value: ', value)
@@ -109,6 +75,7 @@ function createIframe(video) {
   iframe.width = 360
   iframe.height = 315
   iframe.allowFullscreen = true;
+  iframe.setAttribute('SameSite', 'None' )
 
   return iframe
 
@@ -203,3 +170,13 @@ document.onclick = function (e) {
   }
 
 }
+
+getUpcomingMovies()
+
+getTopRatedMovies()
+
+getNowPlayingMovies()
+
+getLatestMovies()
+
+getPopularMovies()
