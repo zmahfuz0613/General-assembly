@@ -48,7 +48,7 @@ function getUpcomingMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
-  sectionMovies(url, renderSearchMovies, handleError)
+  sectionMovies(url, renderMovies, handleError)
 
 }
 
@@ -61,7 +61,7 @@ function getTopRatedMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
-  sectionMovies(url, renderSearchMovies, handleError)
+  sectionMovies(url, renderMovies, handleError)
 
 }
 
@@ -77,7 +77,7 @@ function getNowPlayingMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
-  sectionMovies(url, renderSearchMovies, handleError)
+  sectionMovies(url, renderMovies, handleError)
 
 }
 
@@ -91,7 +91,7 @@ function getLatestMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
-  sectionMovies(url, renderSearchMovies, handleError)
+  sectionMovies(url, renderMovies, handleError)
 
 }
 
@@ -105,6 +105,6 @@ function getPopularMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
-  sectionMovies(url, renderSearchMovies, handleError)
+  sectionMovies(url, renderMovies, handleError)
 
 }

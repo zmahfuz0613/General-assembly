@@ -2,6 +2,7 @@
 const buttonElement = document.querySelector('#search')
 const inputElement = document.querySelector('#inputValue')
 const movieSearchable = document.querySelector('#movies-searchable')
+const moviesContainer = document.querySelector('#movies-container')
 
 
 function movieSection(movies) {
@@ -35,6 +36,25 @@ ${movieSection(movies)}
 
 movieElement.innerHTML = movieTemplate
 return movieElement
+
+}
+
+function renderSearchMovies(data) {
+
+  // data.results
+  movieSearchable.innerHTML = ''
+  const movies = data.results
+  const movieBlock = createMovieContainer(movies)
+  movieSearchable.appendChild(movieBlock)
+
+}
+
+function renderMovies(data) {
+ // data.results
+  const movies = data.results
+  const movieBlock = createMovieContainer(movies)
+
+  movieSearchable.appendChild(movieBlock)
 
 }
 
@@ -102,26 +122,6 @@ function createVideoTemplate(data, content) {
     content.appendChild(iframeContainer)
   }
 }
-
-
-
-
-function renderSearchMovies(data) {
-
-      // data.results
-  
-  movieSearchable.innerHTML = ''
-
-  const movies = data.results
-      const movieBlock = createMovieContainer(movies)
-      movieSearchable.appendChild(movieBlock)
-      console.log('Data: ', data)
-
-
-}
-
-
-
 
 
   
