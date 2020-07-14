@@ -1,0 +1,32 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#search {
+  color: white;
+  background-color: green;
+}
+
+img:hover {
+  margin-left: 0 40 px;
+  transform: scale(1,2);
+  cursor: pointer;
+}
+
+
+#movies-searchable {
+  margin-top: 20px;
+}
+
+
+h1 {
+  color: rgb(228, 4, 4);
+}
+body {
+  margin: 0;
+}
+
+.container {
+  padding: 20px;
+  margin: 0 auto;
+}
