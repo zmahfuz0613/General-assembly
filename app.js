@@ -13,12 +13,19 @@ const movieSearchable = document.querySelector('#movies-searchable')
 function generateUrl(path) {
   const url = `https://api.themoviedb.org/3${path}?api_key=52db4bf55d0c3e274cddec874e8cce74`
   return url
-
-
-
 }
 
+// Create more section of the movies e.g TV SHOWS, LATEST MOVIES, UPCOMING MOVIES, etc.
 
+
+function sectionMovies(url, onComplete, onError) {
+  fetch(url)
+    .then((res) => res.json())
+    .then(onComplete)
+    .catch((onError) => {
+    })
+
+}
 
 function movieSection(movies) {
   return movies.map((movie) => {
@@ -55,6 +62,24 @@ return movieElement
 }
 
 // Search movies
+// Instead of seraching just one movie we can write this function to search movies from all the sectiopns we created above using sectionMovies function.
+
+function searchMovie(value) {
+
+  const path = '/search/movie'
+
+  const url = generateUrl(path) + '&query=' + value
+
+  sectionMovies('url', 'renderSearchMovies', 'handleError')
+
+}
+
+
+// incase there is an error we creating the error function
+
+function handleError(error) {
+  console.log('Error: ', error)
+}
 
 buttonElement.onclick = function (e) {
   e.preventDefault()
@@ -64,15 +89,11 @@ buttonElement.onclick = function (e) {
 
   const newUrl = generateUrl(path) + '&query=' + value
 
-
-
   fetch(newUrl)
-    .then((res) => res.json())
-    .then(renderSearchMovies)
-    .catch((error) => {
-      console.log('Error: ', error)
+  .then((resource) => resource.json())
+  .then(renderSearchMovies)
+  .catch((error) => {
     })
-      
   
   inputElement.value = ''
   console.log('Value: ', value)
@@ -94,7 +115,14 @@ function createIframe(video) {
 }
 
 
+// Display movie Videos, Creating the content and pushed the movie data in this function.
+// Over write everything with 'x' 
+// No more than 4 videos will be displayed and created the Iframe and dump the iframe in the webpage.
+
+
 function createVideoTemplate(data, content) {
+
+  content.innerHTML = '<p id="content-close">X</p>'
   console.log('Videos: ', data)
   const videos = data.results
   const length = videos.length > 4 ? 4 : videos.length
