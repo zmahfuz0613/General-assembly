@@ -11,20 +11,21 @@ function movieSection(movies) {
       src=${IMAGE_URL + movie.poster_path} 
       data-movie-id=${movie.id}
       />`
-   }
-  
+    }
+
   })
-  
+
 }
 
 
 
-function createMovieContainer(movies) {
+function createMovieContainer(movies, title = '') {
 
   const movieElement = document.createElement('div')
   movieElement.setAttribute('class', 'movie')
 
-const movieTemplate = `
+  const movieTemplate = `
+<h2>${title}</h2>
 <section class="section">
 ${movieSection(movies)}
 </section>
@@ -33,8 +34,8 @@ ${movieSection(movies)}
 </div> `
 
 
-movieElement.innerHTML = movieTemplate
-return movieElement
+  movieElement.innerHTML = movieTemplate
+  return movieElement
 
 }
 
@@ -49,9 +50,9 @@ function renderSearchMovies(data) {
 }
 
 function renderMovies(data) {
- // data.results
+  // data.results
   const movies = data.results
-  const movieBlock = createMovieContainer(movies)
+  const movieBlock = createMovieContainer(movies, this.title)
 
   movieSearchable.appendChild(movieBlock)
 
@@ -67,7 +68,7 @@ function handleError(error) {
 buttonElement.onclick = function (e) {
   e.preventDefault()
   const value = inputElement.value
-  
+
   searchMovie(value)
 
   // const path = '/search/movie'
@@ -79,7 +80,7 @@ buttonElement.onclick = function (e) {
   // .then(renderSearchMovies)
   // .catch((error) => {
   //   })
-  
+
   inputElement.value = ''
   console.log('Value: ', value)
 
@@ -94,7 +95,6 @@ function createIframe(video) {
   iframe.width = 360
   iframe.height = 315
   iframe.allowFullscreen = true;
-  iframe.setAttribute('SameSite', 'None' )
 
   return iframe
 
@@ -115,7 +115,7 @@ function createVideoTemplate(data, content) {
   const iframeContainer = document.createElement('div')
 
   for (let i = 0; i < length; i++) {
-    const video = videos[i]  
+    const video = videos[i]
     const iframe = createIframe(video)
     iframeContainer.appendChild(iframe)
     content.appendChild(iframeContainer)
@@ -123,17 +123,17 @@ function createVideoTemplate(data, content) {
 }
 
 
-  
+
 // Event Delegation
 
 
 
-document.onclick = function (e) {
-    
-  const target = e.target
+document.onclick = function (event) {
+
+  const target = event.target
 
   if (target.tagName.toLowerCase() === 'img') {
-    
+
     const movieId = target.dataset.movieId
     console.log('Movie ID:', movieId)
 
@@ -153,12 +153,12 @@ document.onclick = function (e) {
       .then((resource) => resource.json())
       .then((data) => createVideoTemplate(data, content))
 
-        .catch((error) => {
-          console.log('Error: ', error)
-        })
-      
+      .catch((error) => {
+        console.log('Error: ', error)
+      })
 
-    
+
+
 
     if (target.id === 'content-close') {
       const content = target.parentElement
@@ -169,6 +169,8 @@ document.onclick = function (e) {
   }
 
 }
+
+searchMovie('Spider Man')
 
 getUpcomingMovies()
 

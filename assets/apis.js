@@ -47,11 +47,11 @@ function getUpcomingMovies() {
   const path = '/movie/upcoming'
 
   const url = generateUrl(path) + '&query=' + value
+  const render = renderMovies.bind({title: 'Upcoming Movies'})
 
   sectionMovies(url, renderMovies, handleError)
 
 }
-
 
 // Get Top Rated Movies
 
@@ -60,6 +60,8 @@ function getTopRatedMovies() {
   const path = '/movie/top_rated'
 
   const url = generateUrl(path) + '&query=' + value
+  const render = renderMovies.bind({title: 'Top Rated Movies'})
+
 
   sectionMovies(url, renderMovies, handleError)
 
@@ -77,6 +79,9 @@ function getNowPlayingMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
+  const render = renderMovies.bind({title: 'Now Playing Movies'})
+
+
   sectionMovies(url, renderMovies, handleError)
 
 }
@@ -91,6 +96,9 @@ function getLatestMovies() {
 
   const url = generateUrl(path) + '&query=' + value
 
+  const render = renderMovies.bind({title: 'Latest Movies'})
+
+
   sectionMovies(url, renderMovies, handleError)
 
 }
@@ -104,6 +112,9 @@ function getPopularMovies() {
   const path = '/movie/popular'
 
   const url = generateUrl(path) + '&query=' + value
+
+  const render = renderMovies.bind({title: 'Popular Movies'})
+
 
   sectionMovies(url, renderMovies, handleError)
 

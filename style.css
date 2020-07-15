@@ -7,11 +7,11 @@ html {
   background-color: green;
 }
 
-/* img:hover {
+img:hover {
   margin-left: 0 40 px;
   transform: scale(1,2);
   cursor: pointer;
-} */
+}
 
 
 #movies-searchable {
@@ -34,7 +34,18 @@ html {
 h1 {
   color: rgb(228, 4, 4);
 }
+.content {
+  border: 1px solid red;
+  display: none;
+}
 
+.content div {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px;
+}
 .container {
   padding: 20px;
   margin: 0 auto;
@@ -45,32 +56,31 @@ h1 {
 }
 
 section {
-  position: relative;
   width: 100%;
-  margin-top: 25px;
   display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
   overflow-x: auto;
-  transition: 250ms all;
 }
 
-section .imageContainer {
-  flex: 0 0 auto;
+section img {
+  width: 300px;
+
+}
+.content-display {
+  display: block;
 }
 
-.content {
+/* .content {
   display: none;
   position: relative;
   min-height: 200px;
   width: 100%;
   border: 1px solid red;
   padding: 20px;
-}
+} */
 
 /* images */
 
-.imageContainer {
+/* .imageContainer {
   transition: 250ms all;
   width: 300px;
 }
@@ -90,7 +100,7 @@ section .imageContainer {
 
 .imageContainer img {
   width: 100%;
-}
+} */
 
 /* video header */
 
