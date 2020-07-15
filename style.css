@@ -7,23 +7,32 @@ html {
   background-color: green;
 }
 
-img:hover {
+/* img:hover {
   margin-left: 0 40 px;
   transform: scale(1,2);
   cursor: pointer;
-}
+} */
 
 
 #movies-searchable {
   margin-top: 20px;
 }
 
+.navbar-brand {
+  
+  text-transform: uppercase;
+  background-color: red;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.nav-link {
+  
+  background-color:white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+}
 
 h1 {
   color: rgb(228, 4, 4);
-}
-body {
-  margin: 0;
 }
 
 .container {

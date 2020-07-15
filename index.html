@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,42 +8,82 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <title>Movieflix</title>
 </head>
+
 <body>
 
-<!-- Navbar -->
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <a class="navbar-brand" href="index.html#Home">Movieflix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html#Latest">Latest</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html#Popular">Popular</a>
+          </li>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand" href="index.html#Home"><h1>Movieflix</h1></a>
-    <ul class="nav justify-content-end">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-    </ul>
-  
-      <form>
-        <div class="form-group">
-        <input type="search" placeholder="Search" id="inputValue">
-        <button type="submit" id="search">Search</button>
-      </form>
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html#Top Rated">Top Rated</a>
+          </li>
+        </ul>
+        <!-- <form class="form-group">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+        <form>
+          <div class="form-group">
+          <input type="search" placeholder="Search" id="inputValue">
+          <button type="submit" id="search">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+ 
+  <div class="slideshow-container">
+    <div class="mySlides">
+      <div class="centered">
+      </div>
+      <img src="../Images/architecture-2149059_1920 copy.jpg" style="width: 100%">
+      <div class="text">
+       
+      </div>
     </div>
-  </nav>
+    <div class="mySlides">
+      <div class="centered">
+
+      </div>
+      <img src="../Images/Europe copy.jpg" style="width: 100%">
+      <div class="text">
+      </div>
+    </div>
+    <div class="mySlides">
+      <div class="centered">
+
+      </div>
+      <img src="../Images/Venice.jpg" style="width: 100%">
+      <div class="text">
+      </div>
+    </div>
+  </div>
 
   <div class="container">
-<img src="" alt="">
+    <img src="" alt="">
 
-<div id="movies-searchable"></div>
-<div id="movies-container"></div>
+    <div id="movies-searchable"></div>
+    <div id="movies-container"></div>
 
-</div>
+  </div>
 
-  <script src="apis.js"></script>
-  <script src="app.js"></script>
+  <script src="./assets/apis.js"></script>
+  <script src="./assets/app.js"></script>
 </body>
+
 </html>
