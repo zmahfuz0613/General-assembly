@@ -114,10 +114,10 @@ Wire frame can be accessed at the link below.
 |---|---| ---|
 |July 10-12| Prompt / Wireframes / Priority Matrix / Timeframes | Complete
 |July 13| Project Approval | Complete
-|July 13| Core Application Structure (HTML, CSS, etc.) | Incomplete
-|July 14| Pseudocode / Javascript functionality | Incomplete
-|July 15| Button templates/SlideShows/JS Timing	 | Incomplete
-|July 16| MVP | Incomplete
+|July 13| Core Application Structure (HTML, CSS, etc.) | Complete
+|July 14| Pseudocode / Javascript functionality | Complete
+|July 15| Button templates/SlideShows/JS Timing	 | Complete
+|July 16| MVP | Complete
 |July 17| Presentations | Incomplete
 
 ## Priority Matrix
