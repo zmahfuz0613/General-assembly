@@ -1,62 +1,202 @@
-const buttonElement = document.querySelector('#search')
-const inputElement = document.querySelector('#inputValue')
-const movieSearchable = document.querySelector('#movies-searchable')
-const moviesContainer = document.querySelector('#movies-container')
+const buttonElement = document.querySelector('#search');
+const inputElement = document.querySelector('#inputValue');
+const moviesResult = document.querySelector('#MoviesResult');
+const categories = document.querySelector('#Categories');
+const movieDetail = document.querySelector('#MovieDetail');
+const movieDetailPoster = document.querySelector('#MovieDetailPoster');
+const movieDetailInformation = document.querySelector('#MovieDetailInformation');
+const movieDetailTrailers = document.querySelector('#MovieDetailTrailers');
+/*JD*/
+/*Slider*/
+window.onload  = function(){
+  
+  var slides = document.querySelectorAll('#slides .slide');
+  var currentSlide = 0;
+  var slideInterval = setInterval(nextSlide,2000);
+
+  function nextSlide() {
+      slides[currentSlide].className = 'slide';
+      currentSlide = (currentSlide+1)%slides.length;
+      slides[currentSlide].className = 'slide showing';
+  }
+
+  getAllMovies();
+}
 
 
-function movieSection(movies) {
-  return movies.map((movie) => {
-    if (movie.poster_path) {
-      return `<img 
-      src=${IMAGE_URL + movie.poster_path} 
-      data-movie-id=${movie.id}
-      />`
-    }
+function getAllMovies(){
+  categories.innerHTML = '';
+  categories.style.display = 'block';
+  movieDetail.style.display = 'none';
 
-  })
-
+  getTopRatedMovies();
+  getNowPlayingMovies();
+  getPopularMovies();
+  getUpcomingMovies();
 }
 
 
 
-function createMovieContainer(movies, title = '') {
-
-  const movieElement = document.createElement('div')
-  movieElement.setAttribute('class', 'movie')
-
-  const movieTemplate = `
-<h2>${title}</h2>
-<section class="section">
-${movieSection(movies)}
-</section>
-<div class="content">
-<p id="content-close">X</p>
-</div> `
-
-
-  movieElement.innerHTML = movieTemplate
-  return movieElement
+function renderMovies(data) {  
+  
+  categories.innerHTML += createCategory(data.results, this.title);
 
 }
 
-function renderSearchMovies(data) {
 
-  // data.results
-  movieSearchable.innerHTML = ''
-  const movies = data.results
-  const movieBlock = createMovieContainer(movies)
-  movieSearchable.appendChild(movieBlock)
+function createCategory(movies, title) {
+
+  let categoryHtml =  `<div>
+        <ul class="flex-container">
+          <li class="flex-title-item">${title}</li>
+        </ul>
+        <ul class="flex-container">`;
+
+  categoryHtml += createMovies(movies);
+  categoryHtml += `</ul></div>`;
+
+  return categoryHtml;
+}
+
+
+function createMovies(movies){
+  
+  let moviesHtml = '';
+  if(movies != null){
+      movies.map((movie) => {
+      if (movie.poster_path) {
+        moviesHtml +=  `<li class="flex-item"><img src="${IMAGE_URL + movie.poster_path}" data-movie-id="${movie.id}" onclick="showMovieDetail(${movie.id})"/></li>`;
+      }
+  
+    });
+  }
+
+  return moviesHtml;
+}
+
+function showMovieDetail(movieId){
+  categories.style.display = 'none';
+  movieDetail.style.display = 'block';
+  getMovieById(movieId);
+  getMovieTrailersById(movieId);  
+}
+
+
+function createMovieDataTemplate(data){
+
+  if(movieDetailPoster.childElementCount>0){
+    movieDetailPoster.removeChild(movieDetailPoster.childNodes[0]); 
+  }
+  if(movieDetailInformation.childElementCount>0){
+    movieDetailInformation.removeChild(movieDetailInformation.childNodes[0]); 
+  }
+
+    //Poster    
+    const poster = createMoviePoster(data);    
+    movieDetailPoster.appendChild(poster);
+
+    //Information   
+    const information = createMovieInformation(data);    
+    movieDetailInformation.appendChild(information);  
 
 }
 
-function renderMovies(data) {
-  // data.results
-  const movies = data.results
-  const movieBlock = createMovieContainer(movies, this.title)
+// Display movie Videos, Creating the content and pushed the movie data in this function.
+// Over write everything with 'x' 
+// No more than 4 videos will be displayed and created the Iframe and dump the iframe in the webpage.
 
-  movieSearchable.appendChild(movieBlock)
+function createVideoTemplate(data) {
+  //Trailers
+  const videos = data.results;
+  const length = videos.length > 4 ? 4 : videos.length;
+  const trailerContainer = document.createElement('div');
+  const trailers = document.createElement('h2');
+  trailers.innerHTML = 'Trailers';
+  trailerContainer.appendChild(trailers);
+
+  for (let i = 0; i < length; i++) {
+    const video = videos[i];
+    const iframe = createIframe(video);
+    trailerContainer.appendChild(iframe);   
+     
+  }
+
+  if(movieDetailTrailers.childElementCount>0){
+    movieDetailTrailers.removeChild(movieDetailTrailers.childNodes[0]); 
+  };
+  movieDetailTrailers.appendChild(trailerContainer);
+}
+
+
+// New Function to embed the video trailer 
+
+function createIframe(video) {
+  
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube.com/embed/${video.key}`;
+  iframe.width = 250;
+  iframe.height = 218;
+  iframe.allowFullscreen = true;
+
+  return iframe;
 
 }
+
+
+//Create movie information
+
+function createMovieInformation(movie){
+  const informationContainer = document.createElement('div');
+  informationContainer.classList.add('movie-content');
+
+  //Title
+
+  const title = document.createElement('h1');
+  title.innerHTML = `${movie.title} (${movie.release_date})`;
+  informationContainer.appendChild(title);
+  
+  //Overview
+
+  const overView = document.createElement('h5');
+  overView.innerHTML = `${movie.overview}`;
+  informationContainer.appendChild(overView);
+
+  //Genres
+
+  const genre = document.createElement('h2');
+  genre.classList.add('movie-information');
+  let genreHtml = '';
+  for(var i = 0; i < movie.genres.length; i++){
+    genreHtml += movie.genres[i].name + ', ';
+  }
+  genreHtml = genreHtml.substring(0, genreHtml.length-2);
+
+  genre.innerHTML = `Genres: ${genreHtml}`;
+  informationContainer.appendChild(genre);  
+
+  //Vote average
+
+  const voteAverage = document.createElement('h2');
+  voteAverage.classList.add('movie-information');
+  voteAverage.innerHTML = `Vote average: ${movie.vote_average}`;
+  informationContainer.appendChild(voteAverage);
+  return informationContainer;
+}
+
+//Create movie poster
+
+function createMoviePoster(movie){
+  const posterContainer = document.createElement('div');
+  posterContainer.classList.add('movie-thumb');
+  const img = document.createElement('img');
+  img.src = `${IMAGE_URL + movie.poster_path}`;
+  img.alt = movie.original_title;
+  img.width = 300;
+  img.height = 450;
+  posterContainer.appendChild(img);
+  return posterContainer;
+}
+
 
 
 // incase there is an error we creating the error function
@@ -65,119 +205,26 @@ function handleError(error) {
   console.log('Error: ', error)
 }
 
+
+
+//Search movie
+
+
 buttonElement.onclick = function (e) {
+  
   e.preventDefault()
-  const value = inputElement.value
-
-  searchMovie(value)
-
-  // const path = '/search/movie'
-
-  // const newUrl = generateUrl(path) + '&query=' + value
-
-  // fetch(newUrl)
-  // .then((resource) => resource.json())
-  // .then(renderSearchMovies)
-  // .catch((error) => {
-  //   })
-
-  inputElement.value = ''
-  console.log('Value: ', value)
-
-}
-
-
-// New Function to embed the video trailer 
-
-function createIframe(video) {
-  const iframe = document.createElement('iframe')
-  iframe.src = `https://www.youtube.com/embed/JwMKRevYa_M/${video.key}`
-  iframe.width = 360
-  iframe.height = 315
-  iframe.allowFullscreen = true;
-
-  return iframe
-
-}
-
-
-// Display movie Videos, Creating the content and pushed the movie data in this function.
-// Over write everything with 'x' 
-// No more than 4 videos will be displayed and created the Iframe and dump the iframe in the webpage.
-
-
-function createVideoTemplate(data, content) {
-
-  content.innerHTML = '<p id="content-close">X</p>'
-  console.log('Videos: ', data)
-  const videos = data.results
-  const length = videos.length > 4 ? 4 : videos.length
-  const iframeContainer = document.createElement('div')
-
-  for (let i = 0; i < length; i++) {
-    const video = videos[i]
-    const iframe = createIframe(video)
-    iframeContainer.appendChild(iframe)
-    content.appendChild(iframeContainer)
+  const value = inputElement.value;
+  categories.innerHTML = '';
+  categories.style.display = 'block';
+  movieDetail.style.display = 'none';
+  if(value != ''){  
+    searchMovie(value);
   }
-}
-
-
-
-// Event Delegation
-
-
-
-document.onclick = function (event) {
-
-  const target = event.target
-
-  if (target.tagName.toLowerCase() === 'img') {
-
-    const movieId = target.dataset.movieId
-    console.log('Movie ID:', movieId)
-
-    const section = event.target.parentElement
-    const content = section.nextElementSibling
-    content.classList.add('content-display')
-
-
-
-    // fetch movie videos here
-
-
-    const path = `/movie/${movieId}/videos`
-    const url = generateUrl(path)
-
-    fetch(url)
-      .then((resource) => resource.json())
-      .then((data) => createVideoTemplate(data, content))
-
-      .catch((error) => {
-        console.log('Error: ', error)
-      })
-
-
-
-
-    if (target.id === 'content-close') {
-      const content = target.parentElement
-      content.classList.remove('content-display')
-
-    }
-
+  else{
+    getAllMovies();
   }
-
+  inputElement.value = '';
+  
 }
 
-searchMovie('Spider Man')
 
-getUpcomingMovies()
-
-getTopRatedMovies()
-
-getNowPlayingMovies()
-
-getLatestMovies()
-
-getPopularMovies()
