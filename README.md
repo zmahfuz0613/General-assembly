@@ -118,7 +118,7 @@ Wire frame can be accessed at the link below.
 |July 14| Pseudocode / Javascript functionality | Complete
 |July 15| Button templates/SlideShows/JS Timing	 | Complete
 |July 16| MVP | Complete
-|July 17| Presentations | Incomplete
+|July 17| Presentations | Complete
 
 ## Priority Matrix
 
