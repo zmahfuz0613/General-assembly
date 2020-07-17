@@ -52,18 +52,6 @@ function getUpcomingMovies() {
 
 }
 
-// Get Latest Movies
-// function getLatestMovies() {
-
-//   const path = '/movie/latest';
- 
-//   const url = generateUrl(path)
-
-//   const render = renderMovies.bind({title: 'Latest Movies'});
-
-//   sectionMovies(url, render, handleError);
-
-// }
 
 // Get Top Rated Movies
 
