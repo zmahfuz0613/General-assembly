@@ -2,6 +2,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/*Header*/
+.navbar-light .navbar-brand, .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link  {
+  cursor: pointer;
+}
+
 #search {
   color: white;
   background-color: #0069D9;
@@ -116,7 +121,7 @@ header .overlay {
 
 @media (pointer: coarse) and (hover: none) {
   .overlay {
-    background: url('https://eez.ymcdn.website/new/7e06298aca3addee27f568c68c9b00e7/Skpu5HaVkOc/1600x900') black no-repeat center center scroll;
+    background: url('https://www.youtube.com/embed/JwMKRevYa_M/1600x900') black no-repeat center center scroll;
   }
   .overlay video {
     display: none;
@@ -125,7 +130,6 @@ header .overlay {
 
 
 
-/*JD*/
 
 /*Nav bar*/
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {

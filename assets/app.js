@@ -6,7 +6,13 @@ const movieDetail = document.querySelector('#MovieDetail');
 const movieDetailPoster = document.querySelector('#MovieDetailPoster');
 const movieDetailInformation = document.querySelector('#MovieDetailInformation');
 const movieDetailTrailers = document.querySelector('#MovieDetailTrailers');
-/*JD*/
+const movieFlixMenu = document.querySelector('#MovieFlixMenu');
+const popularMenu = document.querySelector('#PopularMenu');
+const topMenu = document.querySelector('#TopMenu');
+const nowPlayingMenu = document.querySelector('#NowPlaying');
+
+
+
 /*Slider*/
 window.onload  = function(){
   
@@ -25,17 +31,20 @@ window.onload  = function(){
 
 
 function getAllMovies(){
-  categories.innerHTML = '';
-  categories.style.display = 'block';
-  movieDetail.style.display = 'none';
-
+  cleanCategoryContainer();
   getTopRatedMovies();
   getNowPlayingMovies();
   getPopularMovies();
   getUpcomingMovies();
+  getLatestMovies()
 }
 
 
+function renderLatest(movie){
+  
+  categories.innerHTML += createCategory([movie], this.title);
+
+}
 
 function renderMovies(data) {  
   
@@ -75,6 +84,7 @@ function createMovies(movies){
 }
 
 function showMovieDetail(movieId){
+  debugger;
   categories.style.display = 'none';
   movieDetail.style.display = 'block';
   getMovieById(movieId);
@@ -90,7 +100,7 @@ function createMovieDataTemplate(data){
   if(movieDetailInformation.childElementCount>0){
     movieDetailInformation.removeChild(movieDetailInformation.childNodes[0]); 
   }
-
+  debugger;
     //Poster    
     const poster = createMoviePoster(data);    
     movieDetailPoster.appendChild(poster);
@@ -109,15 +119,16 @@ function createVideoTemplate(data) {
   //Trailers
   const videos = data.results;
   const length = videos.length > 4 ? 4 : videos.length;
+  
   const trailerContainer = document.createElement('div');
   const trailers = document.createElement('h2');
-  trailers.innerHTML = 'Trailers';
+  trailers.innerHTML = length > 0 ? 'Trailers' : '';
   trailerContainer.appendChild(trailers);
 
   for (let i = 0; i < length; i++) {
-    const video = videos[i];
-    const iframe = createIframe(video);
-    trailerContainer.appendChild(iframe);   
+  const video = videos[i];
+  const iframe = createIframe(video);
+  trailerContainer.appendChild(iframe);   
      
   }
 
@@ -129,7 +140,6 @@ function createVideoTemplate(data) {
 
 
 // New Function to embed the video trailer 
-
 function createIframe(video) {
   
   const iframe = document.createElement('iframe');
@@ -144,25 +154,20 @@ function createIframe(video) {
 
 
 //Create movie information
-
 function createMovieInformation(movie){
   const informationContainer = document.createElement('div');
   informationContainer.classList.add('movie-content');
-
   //Title
-
   const title = document.createElement('h1');
   title.innerHTML = `${movie.title} (${movie.release_date})`;
   informationContainer.appendChild(title);
   
   //Overview
-
   const overView = document.createElement('h5');
   overView.innerHTML = `${movie.overview}`;
   informationContainer.appendChild(overView);
 
   //Genres
-
   const genre = document.createElement('h2');
   genre.classList.add('movie-information');
   let genreHtml = '';
@@ -175,7 +180,6 @@ function createMovieInformation(movie){
   informationContainer.appendChild(genre);  
 
   //Vote average
-
   const voteAverage = document.createElement('h2');
   voteAverage.classList.add('movie-information');
   voteAverage.innerHTML = `Vote average: ${movie.vote_average}`;
@@ -184,7 +188,6 @@ function createMovieInformation(movie){
 }
 
 //Create movie poster
-
 function createMoviePoster(movie){
   const posterContainer = document.createElement('div');
   posterContainer.classList.add('movie-thumb');
@@ -206,17 +209,18 @@ function handleError(error) {
 }
 
 
+function cleanCategoryContainer(){
+  categories.innerHTML = '';
+  categories.style.display = 'block';
+  movieDetail.style.display = 'none';
+}
 
 //Search movie
-
-
 buttonElement.onclick = function (e) {
   
   e.preventDefault()
   const value = inputElement.value;
-  categories.innerHTML = '';
-  categories.style.display = 'block';
-  movieDetail.style.display = 'none';
+  cleanCategoryContainer();
   if(value != ''){  
     searchMovie(value);
   }
@@ -228,3 +232,43 @@ buttonElement.onclick = function (e) {
 }
 
 
+//MovieFlix menu
+movieFlixMenu.onclick = function (e) {
+  
+  e.preventDefault()
+ 
+  getAllMovies();  
+
+  return false;
+}
+
+//Top menu
+topMenu.onclick = function (e) {
+  
+  e.preventDefault()
+  cleanCategoryContainer();
+  getTopRatedMovies();  
+
+  return false;
+}
+
+//Popular menu
+popularMenu.onclick = function (e) {
+  
+  e.preventDefault()
+  cleanCategoryContainer();
+  getPopularMovies();  
+
+  return false;
+}
+
+
+//Latest menu
+nowPlayingMenu.onclick = function (e) {
+  
+  e.preventDefault()
+  cleanCategoryContainer();
+  getNowPlayingMovies();  
+
+  return false;
+}

@@ -25,7 +25,6 @@ function sectionMovies(url, onComplete, onError) {
 
 
 // Get Popular Movies
-
 function getPopularMovies() {
 
   const path = '/movie/popular';
@@ -41,7 +40,6 @@ function getPopularMovies() {
 
 
 // Get upcoming Movies
-
 function getUpcomingMovies() {
 
   const path = '/movie/upcoming';
@@ -55,18 +53,17 @@ function getUpcomingMovies() {
 }
 
 // Get Latest Movies
+// function getLatestMovies() {
 
-function getLatestMovies() {
-
-  const path = '/movie/latest';
+//   const path = '/movie/latest';
  
-  const url = generateUrl(path);
+//   const url = generateUrl(path)
 
-  const render = renderMovies.bind({title: 'Latest Movies'});
+//   const render = renderMovies.bind({title: 'Latest Movies'});
 
-  sectionMovies(url, render, handleError);
+//   sectionMovies(url, render, handleError);
 
-}
+// }
 
 // Get Top Rated Movies
 
@@ -83,7 +80,6 @@ function getTopRatedMovies() {
 }
 
 // Get Now Playing Movies
-
 function getNowPlayingMovies() {
 
   const path = '/movie/now_playing';
@@ -115,7 +111,6 @@ function searchMovie(value) {
 }
 
 //Search movie 
-
 function getMovieById(movieId){
   const path = `/movie/${movieId}`
   const url = generateUrl(path)
@@ -130,7 +125,6 @@ function getMovieById(movieId){
 
 
 //Search trailers 
-
 function getMovieTrailersById(movieId){
     const path = `/movie/${movieId}/videos`
     const url = generateUrl(path)
